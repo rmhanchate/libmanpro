@@ -3,8 +3,8 @@ IT Minor Project
 
 ### Import database
 `mysql -u root -p` <br>
-mysql> `source ~/libmanpro/library.sql` <br>
-mysql> `exit;` <br>
+`mysql> source ~/libmanpro/library.sql` <br>
+`mysql> exit;` <br>
 
 ### Make migrations
 `python manage.py makemigrations` <br>
