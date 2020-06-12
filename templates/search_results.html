@@ -1,0 +1,90 @@
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  text-align: center;
+  img-align: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  text-align: center;
+  img-align: center;
+}
+
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="column" style="background-color:#aaa;">
+    <h4> Books </h4>
+    {% if not books %}
+        <p class="text-center"> no books matched! </p>
+    {% endif %}
+    <div class="row">
+        {% for i in books %}
+            <div class="mx-auto mb-4">
+                <div class="card" style="width: 18rem;">
+				<div class="col-md-4 mx-auto">
+                  <img src="{{ i.link }}" class="card-img-top mt-2 center" alt="Cover Page">
+				</div>
+                  <div class="card-body">
+                    <h5 class="card-title"> {{ i.title }} </h5>
+                    <p class="card-text">Book ID: {{ i.id }}
+                    </p>
+                  </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+  </div>
+  <div class="column" style="background-color:#bbb;">
+    <h4> Authors </h4>
+    {% if not authors %}
+        <p class="text-center"> no authors matched! </p>
+    {% endif %}
+    <div class="row">
+        {% for i in authors %}
+            <div class="mx-auto mb-4">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title"> {{ i.author }} </h5>
+                    <p class="card-text">Book ID: {{ i.id }}
+                    </p>
+                  </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+  </div>
+  <div class="column" style="background-color:#ccc;">
+    <h4> Genre </h4>
+    {% if not genres %}
+        <p class="text-center"> No genres matched! </p>
+    {% endif %}
+    {% for i in genres %}
+    <div class="row">
+        <div class="mx-auto mb-5">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title"> {{ i.genre }} </h5>
+                    <a href="/genre/{{ i.genre }}" class="btn btn-outline-success">All books</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+</body>

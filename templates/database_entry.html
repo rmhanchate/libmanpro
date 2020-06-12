@@ -1,0 +1,73 @@
+{% block scripts %}
+    <script type="text/javascript">
+    function addingForm(num){
+    var data = {}
+    data["title"] = $(".title").val();
+    data["author"] = $(".author").val();
+    data["ids"] = $(".id").val();
+    data["genre"] = $(".genre").val();
+    data["link"] = $(".link").val();
+    console.log("button clicked");
+    data = JSON.stringify(data)
+    $.ajax({
+        type : 'get',
+        url  : '/addingtodb?query=' + data,
+		success: function(result) {
+            console.log(result);
+            $('.successful').append(result);
+        }
+    });
+}
+    </script>
+{% endblock %}
+
+{% block body %}
+<div class="container mt-3">
+	<div class="card bg-light">
+	<article class="card-body mx-auto mt-1" style="max-width: 400px;">
+		<h4 class="card-title text-center">Details:</h4>
+		
+		<div class="form-group input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text"> <i class="fa fa-book"></i> </span>
+			 </div>
+			<input name="" class="form-control title" placeholder="Title of the book" type="text">
+		</div>
+		
+		<div class="form-group input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+			 </div>
+			<input name="" class="form-control author" placeholder="Author Name" type="text">
+		</div>
+
+		<div class="form-group input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text"> <i class="fa fa-barcode"></i> </span>
+			 </div>
+			<input name="" class="form-control id" placeholder="ID" type="text">
+		</div>
+		
+		<div class="form-group input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text"> <i class="fa fa-pencil"></i> </span>
+			</div>
+			<input name="" class="form-control genre" placeholder="Genre as Detected" type="text">
+		</div>
+		
+		<div class="form-group input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text"> <i class="fa fa-link"></i> </span>
+			</div>
+			<input name="" class="form-control link" placeholder="Book Cover Link" type="text">
+		</div>
+		
+		<div class="form-group">
+			<button type="submit" class="btn btn-outline-success btn-block" onclick="addingForm(1)" id="adding_submit"> Add  </button>
+		</div>                                                           
+	</article>
+	</div>
+</div>
+<div class="container successful">
+</div>
+{% endblock %}
